@@ -1,0 +1,5 @@
+F:\Freelance\Documents\Datamatikker Udd\Programmering\MovieProject\NewMovieSoftware\NewMovieOrganiser2000\MovieOrganiser2000\MovieOrganiser2000\obj\Debug\net8.0-windows\MainWindow.g.cs
+F:\Freelance\Documents\Datamatikker Udd\Programmering\MovieProject\NewMovieSoftware\NewMovieOrganiser2000\MovieOrganiser2000\MovieOrganiser2000\obj\Debug\net8.0-windows\Views\AddMoviePage.g.cs
+F:\Freelance\Documents\Datamatikker Udd\Programmering\MovieProject\NewMovieSoftware\NewMovieOrganiser2000\MovieOrganiser2000\MovieOrganiser2000\obj\Debug\net8.0-windows\App.g.cs
+F:\Freelance\Documents\Datamatikker Udd\Programmering\MovieProject\NewMovieSoftware\NewMovieOrganiser2000\MovieOrganiser2000\MovieOrganiser2000\obj\Debug\net8.0-windows\MovieOrganiser2000_MarkupCompile.cache
+F:\Freelance\Documents\Datamatikker Udd\Programmering\MovieProject\NewMovieSoftware\NewMovieOrganiser2000\MovieOrganiser2000\MovieOrganiser2000\obj\Debug\net8.0-windows\MovieOrganiser2000_MarkupCompile.lref

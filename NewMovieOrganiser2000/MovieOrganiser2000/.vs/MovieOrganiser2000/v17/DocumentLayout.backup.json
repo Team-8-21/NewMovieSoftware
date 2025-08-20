@@ -1,0 +1,116 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|f:\\freelance\\documents\\datamatikker udd\\programmering\\movieproject\\newmoviesoftware\\newmovieorganiser2000\\movieorganiser2000\\movieorganiser2000\\views\\addmoviepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|solutionrelative:movieorganiser2000\\views\\addmoviepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|f:\\freelance\\documents\\datamatikker udd\\programmering\\movieproject\\newmoviesoftware\\newmovieorganiser2000\\movieorganiser2000\\movieorganiser2000\\views\\addmoviepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|solutionrelative:movieorganiser2000\\views\\addmoviepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|f:\\freelance\\documents\\datamatikker udd\\programmering\\movieproject\\newmoviesoftware\\newmovieorganiser2000\\movieorganiser2000\\movieorganiser2000\\viewmodels\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|solutionrelative:movieorganiser2000\\viewmodels\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|f:\\freelance\\documents\\datamatikker udd\\programmering\\movieproject\\newmoviesoftware\\newmovieorganiser2000\\movieorganiser2000\\movieorganiser2000\\viewmodels\\viewmodelbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|solutionrelative:movieorganiser2000\\viewmodels\\viewmodelbasic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|f:\\freelance\\documents\\datamatikker udd\\programmering\\movieproject\\newmoviesoftware\\newmovieorganiser2000\\movieorganiser2000\\movieorganiser2000\\viewmodels\\addmovieviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B880A243-746B-4565-ADB8-A0AA10425C59}|MovieOrganiser2000\\MovieOrganiser2000.csproj|solutionrelative:movieorganiser2000\\viewmodels\\addmovieviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ViewModelBasic.cs",
+              "DocumentMoniker": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\ViewModels\\ViewModelBasic.cs",
+              "RelativeDocumentMoniker": "MovieOrganiser2000\\ViewModels\\ViewModelBasic.cs",
+              "ToolTip": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\ViewModels\\ViewModelBasic.cs",
+              "RelativeToolTip": "MovieOrganiser2000\\ViewModels\\ViewModelBasic.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T14:35:35.273Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserViewModel.cs",
+              "DocumentMoniker": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\ViewModels\\UserViewModel.cs",
+              "RelativeDocumentMoniker": "MovieOrganiser2000\\ViewModels\\UserViewModel.cs",
+              "ToolTip": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\ViewModels\\UserViewModel.cs",
+              "RelativeToolTip": "MovieOrganiser2000\\ViewModels\\UserViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T14:35:29.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddMoviePage.xaml.cs",
+              "DocumentMoniker": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\Views\\AddMoviePage.xaml.cs",
+              "RelativeDocumentMoniker": "MovieOrganiser2000\\Views\\AddMoviePage.xaml.cs",
+              "ToolTip": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\Views\\AddMoviePage.xaml.cs",
+              "RelativeToolTip": "MovieOrganiser2000\\Views\\AddMoviePage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T14:34:30.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AddMoviePage.xaml",
+              "DocumentMoniker": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\Views\\AddMoviePage.xaml",
+              "RelativeDocumentMoniker": "MovieOrganiser2000\\Views\\AddMoviePage.xaml",
+              "ToolTip": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\Views\\AddMoviePage.xaml",
+              "RelativeToolTip": "MovieOrganiser2000\\Views\\AddMoviePage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-18T14:34:25.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AddMovieViewModel.cs",
+              "DocumentMoniker": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\ViewModels\\AddMovieViewModel.cs",
+              "RelativeDocumentMoniker": "MovieOrganiser2000\\ViewModels\\AddMovieViewModel.cs",
+              "ToolTip": "F:\\Freelance\\Documents\\Datamatikker Udd\\Programmering\\MovieProject\\NewMovieSoftware\\NewMovieOrganiser2000\\MovieOrganiser2000\\MovieOrganiser2000\\ViewModels\\AddMovieViewModel.cs",
+              "RelativeToolTip": "MovieOrganiser2000\\ViewModels\\AddMovieViewModel.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T14:34:42.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
