@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MovieOrganiser2000.Helpers;
+using MovieOrganiser2000.Models;
+using MovieSoftware.MVVM.Model.Classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,16 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MovieOrganiser2000.Helpers;
-using MovieOrganiser2000.Models;
 
 namespace MovieOrganiser2000.ViewModels
 {
     public class AddMovieViewModel : INotifyPropertyChanged
     {
         private Genre _selectedGenre;
-
         public ObservableCollection<Genre> Genres { get; }
+        public User CurrentUser { get; set; }
 
         public Genre SelectedGenre
         {

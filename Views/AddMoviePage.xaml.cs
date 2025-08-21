@@ -12,9 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MovieSoftware.ViewModels;
+using MovieOrganiser2000.ViewModels;
 
-namespace MovieSoftware.Views
+namespace MovieOrganiser2000.Views
 {
     /// <summary>
     /// Interaction logic for AddMoviePage.xaml
