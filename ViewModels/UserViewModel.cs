@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using MovieSoftware.MVVM.Model.Classes;
 using MovieSoftware.MVVM.Model.Repositories;
 using MovieSoftware.Parent_classes;
+using MovieOrganiser2000.Helpers;
+using MovieOrganiser2000.ViewModels;
 
 namespace MovieSoftware.MVVM.ViewModel
 {
@@ -22,6 +23,8 @@ namespace MovieSoftware.MVVM.ViewModel
 
         public ObservableCollection<User> Users { get; }
         public ICollectionView UsersCollectionView { get; }
+
+        
 
         private string userName;
         public string UserName { get => userName; set { userName = value; OnPropertyChanged(); } }
@@ -50,7 +53,7 @@ namespace MovieSoftware.MVVM.ViewModel
             UsersCollectionView.Filter = UsersFilter;
 
             
-            AddUserCommand = new RelayCommand(_ => AddUser, _ => CanAddUser());
+            AddUserCommand = new RelayCommand(_ => AddUser(), _ => CanAddUser());
             SaveUserCommand = new RelayCommand(_ => SaveUser(), _ => CanSaveUser());
             ValidateUserLoginCommand = new RelayCommand(_ => ValidateUserLogin(), _ => CanLoginUser());
             DeleteUserCommand = new RelayCommand(_ => DeleteUser(), _ => CanDeleteUser());
@@ -92,7 +95,8 @@ namespace MovieSoftware.MVVM.ViewModel
         public void ValidateUserLogin()
         {
             bool loginValue = userRepository.ValidateUserLogin(UserName, PassWord);
-            MainWindowViewModel.CurrentUser = userRepository.GetUser(userName);
+            var addMovieVM = new AddMovieViewModel(); //hurtigt fix, sætter nyt instans af AddMovieViewModel og sætter egenskab for CurrentUser
+            addMovieVM.CurrentUser = userRepository.GetUser(userName);
             //skal linke til MainWindowViewModel, current View med RelayCommand
 
             if (loginValue)
@@ -106,6 +110,11 @@ namespace MovieSoftware.MVVM.ViewModel
             }
         }
 
+        private bool UsersFilter(object item) //filter users
+        {
+            // Example: show all users (no filtering)
+            return true;
+        }
         private bool CanAddUser()=> !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(PassWord);
         private bool CanSaveUser() => SelectedUser != null;
         private bool CanDeleteUser() => SelectedUser != null;

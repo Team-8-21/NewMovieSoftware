@@ -11,7 +11,7 @@ namespace MovieSoftware.Parent_classes
     public class ViewModelBasic
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OpPropertyChanged([CallerMemberName] string name = null) =>
+        protected void OnPropertyChanged([CallerMemberName] string name = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
