@@ -5,155 +5,171 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MovieOrganiser2000.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="AddMoviePage">
+     
+      Title="AddMoviePage"
+      FontFamily="Arial"
+      Background="White">
 
-    <Grid Background="White">
-        <Grid.ColumnDefinitions/>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="37*"/>
+            <RowDefinition Height="Auto"/>
+            <!-- overskrift -->
+            <RowDefinition Height="*"/>
+            <!-- indhold -->
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <!-- Øverste grid -->
+        <!-- Øverste grid - Overtekst -->
         
-
-        <!-- Nederste grid -->
-        <Label Content="Filmtitel" 
-               HorizontalAlignment="Center" 
-               Margin="0,45,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" 
-               FontSize="36"/>
-
-        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"  
-                 HorizontalAlignment="Center" 
-                 Margin="0,115,0,0" 
-                 Grid.Row="1" 
-                 TextWrapping="Wrap"                  
-                 VerticalAlignment="Top" 
-                 Width="360" 
-                 BorderBrush="Black" 
-                 FontSize="22"/>
+            <TextBox FontWeight="DemiBold" FontSize="28" Text="Opret ny film" Margin="3"/>
 
 
-        <Label Content="Filmlængde" 
-               HorizontalAlignment="Center" 
-               Margin="0,175,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" 
-               FontSize="36"/>
-
-        <TextBox Text="{Binding MovieLength, UpdateSourceTrigger=PropertyChanged}" 
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Top"
-                 Margin="0,245,0,0" 
-                 Grid.Row="1" 
-                 TextWrapping="Wrap"   
-                 Width="360" 
-                 BorderBrush="Black" 
-                 FontSize="22"/>
-
-        <Label Content="Filmgenre" 
-               HorizontalAlignment="Center" 
-               Margin="0,305,0,0" 
-               Grid.Row="1" 
-               VerticalAlignment="Top" 
-               FontSize="36"/>
-
-        <ComboBox ItemsSource="{Binding Genres}" 
-                  SelectedItem="{Binding SelectedGenre, Mode=TwoWay}" 
-                  HorizontalAlignment="Center" 
-                  Margin="0,375,0,0" 
-                  Grid.Row="1" 
-                  VerticalAlignment="Top" 
-                  Width="360" 
-                  FontSize="22" />
-
-
-        <Button Command="{Binding AddMovieCommand}"
-                Content="Gem" 
-                HorizontalAlignment="Center" 
-                Margin="0,478,0,0" 
-                Grid.Row="1" 
-                VerticalAlignment="Top" 
-                FontSize="36" 
-                Width="200" Height="80" 
-                Background="#FFEFE5DA"/>
-        <Grid>
+        <!-- Kolonner under overskriften -->
+        
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <!-- venstre kolonne -->
+                <ColumnDefinition Width="2*"/>
+                <!-- højre kolonne -->
             </Grid.ColumnDefinitions>
 
-            <Image  Grid.Column="0"
-                    HorizontalAlignment="Center" 
-                    Height="100" 
-                    Margin="0,0,0,0" 
-                    VerticalAlignment="Center" 
-                    Width="100" 
-                    Source="/Images/TheMovies.png"/>
+            <!-- Venstre kolonne, tilføj film -->
+            
+            <!-- <Border BorderBrush="Black" BorderThickness="1" Margin="0" Grid.Column="0"> -->
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" 
-                    Content="Opret Film"
-                    FontSize="20"
+                    <Label Grid.Row="0" Grid.Column="0" 
+                       Content="Filmtitel"  
+                       FontSize="20" 
+                       Margin="3"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="0" 
+                     Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"   
+                     TextWrapping="Wrap"                  
+                     MinWidth="300"
+                     MaxHeight="30"
+                     BorderBrush="Black" 
+                     FontSize="20"
+                     Margin="3"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" 
+                   Content="Filmlængde"   
+                   FontSize="20"
+                   Margin="3,20,3,3"/>
+
+                    <TextBox Grid.Row="3" Grid.Column="0" 
+                     Text="{Binding MovieLength, UpdateSourceTrigger=PropertyChanged}" 
+                     TextWrapping="Wrap"   
+                     MinWidth="300"
+                     MaxHeight="30"
+                     BorderBrush="Black" 
+                     FontSize="20"
+                     Margin="3,20,3,3"/>
+
+                    <Label Grid.Row="4" Grid.Column="0" 
+                   Content="Genre" 
+                   FontSize="20"
+                   Margin="3,20,3,3"/>
+
+                    <ComboBox Grid.Row="5" Grid.Column="0" 
+                      ItemsSource="{Binding Genres}" 
+                      SelectedItem="{Binding SelectedGenre, Mode=TwoWay}" 
+                      Width="300" 
+                      FontSize="20"
+                      HorizontalAlignment="Left"
+                      Margin="3,20,3,10"/>
+
+                    <Button Grid.Row="6" Grid.Column="0" 
+                    Command="{Binding AddMovieCommand}"
+                    Content="GEM" 
+                    Width="200" Height="100" 
+                    Background="#FFEFE5DA"
+                    FontSize="30"
+                    FontWeight="ExtraBlack"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Padding="20" 
-                    Width="230" 
-                    Background="#FFEDE5D8" 
-                    BorderBrush="{x:Null}"/>
+                    Margin="2,2,2,2"/>
+                </Grid>
+         <!--   </Border> -->
 
-            <Button Grid.Column="2" 
-                    Content="Funktion"
-                    FontSize="20"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Padding="20" 
-                    Width="230" 
-                    Background="Black" 
-                    BorderBrush="{x:Null}" 
-                    Foreground="White"/>
-
-            <Button Grid.Column="3" 
-                    Content="Funktion"
-                    FontSize="20"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Padding="20" 
-                    Width="230"     
-                    Background="Black" 
-                    BorderBrush="{x:Null}" 
-                    Foreground="White"/>
-
-            <Button Grid.Column="4" 
-                    Content="Funktion"
-                    FontSize="20"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Padding="20" 
-                    Width="230" Background="Black" 
-                    BorderBrush="{x:Null}" 
-                    Foreground="White"/>
-
-            <Button Grid.Column="5" 
-                    Content="Funktion"
-                    FontSize="20"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Padding="20" 
-                    Width="230" Background="Black" 
-                    BorderBrush="{x:Null}" 
-                    Foreground="White"/>
-
+            <!-- Højre kolonne, listbox med alle tilføjede film -->
+            
+            <Grid Grid.Column="1" Margin="10,10,10,10" HorizontalAlignment="Stretch">
+                <ListBox>
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                    <ListBoxItem Content="Film Placeholder" />
+                </ListBox>
+            </Grid>
         </Grid>
-
     </Grid>
-
-
 
 </Page>

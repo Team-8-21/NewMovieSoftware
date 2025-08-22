@@ -20,11 +20,11 @@ namespace MovieOrganiser2000
         public MainWindow()
         {
             InitializeComponent();
-
+            MainFrame.Navigate(new AddMoviePage());
         }
         private void OpenAddMoviePage_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new AddMoviePage());
+            MainFrame.Navigate(new Views.AddMoviePage());
         }
     }
 }

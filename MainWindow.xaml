@@ -9,7 +9,6 @@
 
     <Grid>
 
-        <!-- Justeret: Brug Auto/Auto/*/Auto til korrekt skalering -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <!-- Menu -->
@@ -69,7 +68,7 @@
 
             <StackPanel Grid.Row="0" Grid.Column="4">
                 <StackPanel Grid.Row="0" Grid.Column="3" Margin="3" MinHeight="35">
-                    <Button Content="Placeholder" Height="35" Width="120" Foreground="GhostWhite" Margin="3" Background="Black" FontSize="14"/>
+                    <Button Content="Billetsalg" Height="35" Width="120" Foreground="GhostWhite" Margin="3" Background="Black" FontSize="14"/>
                 </StackPanel>
             </StackPanel>
 
@@ -92,10 +91,13 @@
             <Separator HorizontalAlignment="Stretch" Margin="1,1,1,5"/>
         </Grid>
 
-        <!-- MainFrame -->
+        <!-- MainFrame - lagt i ViewBox for at sikre skalering! -->
+
         <Grid Grid.Row="2">
             <Frame x:Name="MainFrame"
                    Grid.Row="5"
+                   HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch"
                    NavigationUIVisibility="Hidden"
                    Margin="20" />
         </Grid>
