@@ -14,11 +14,13 @@ namespace MovieOrganiser2000.Models
         public string Director { get; set; }
         public DateOnly Premiere { get; set; }
 
-        public Movie(string title, int movieLength, Genre genre) // Her skal vi have opdateret til at inkludere instruktør og premieredato
+        public Movie(string title, int movieLength, Genre genre, string director, DateOnly premiere) 
         {
             Title = title ?? "Ukendt";
             MovieLength = movieLength;
             Genre = genre;
+            Director = director ?? "Ukendt";
+            Premiere = premiere;
         }
 
     }

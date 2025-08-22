@@ -10,6 +10,14 @@ namespace MovieOrganiser2000.Models
     {
         public int Screen { get; set; }
         public string TheaterAdress { get; set; }
-        public int Seats { get; set; }
+        public int TotalSeats { get; set; }
+
+        public MovieTheater(int screen, string theaterAdress, int totalSeats)
+        {
+            Screen = screen;
+            TheaterAdress = theaterAdress ?? "Ukendt";
+            TotalSeats = totalSeats;
+
+        }
     }
 }

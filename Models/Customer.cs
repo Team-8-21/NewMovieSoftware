@@ -13,5 +13,13 @@ namespace MovieOrganiser2000.Models
         public string Email { get; set; }
         public int PhoneNumber { get; set; }
 
+        public Customer(string firstName, string lastName, string email, int phoneNumber)
+        {
+            FirstName = firstName ?? "Ukendt";
+            LastName = lastName ?? "Ukendt";
+            Email = email ?? "Ukendt";
+            PhoneNumber = phoneNumber;
+
+        }
     }
 }
