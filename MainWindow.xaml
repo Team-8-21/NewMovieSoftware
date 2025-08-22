@@ -5,19 +5,111 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MovieOrganiser2000"
         mc:Ignorable="d"
-        Title="Movie Organiser 2000 Professional Edition" ResizeMode="CanResizeWithGrip" Height="Auto" Width="Auto" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-   
-    <!-- Defineret til at starte op i maksimeret tilstand. Auto, for at adaptere til forskellige skærmstørrelser -->
+        Title="Movie Organiser 2000 Professional Edition" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Grid>
-    
-<Frame x:Name="MainFrame"
-    Grid.Row="5"
-    NavigationUIVisibility="Hidden"
-    Margin="20"
-    Height="Auto" />
+
+        <!-- Justeret: Brug Auto/Auto/*/Auto til korrekt skalering -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Menu -->
+            <RowDefinition Height="Auto"/>
+            <!-- Separator -->
+            <RowDefinition Height="*"/>
+            <!-- MainFrame -->
+            <RowDefinition Height="Auto"/>
+            <!-- Footer (separator + logo) -->
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Menu -->
+        <Grid Grid.Row="0" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="3">
+                <ComboBox Margin="3" Width="120" Height="35" FontSize="14" Foreground="Black" Background="White">
+                    <ComboBoxItem Content="Vælg afdeling" IsSelected="True"/>
+                    <ComboBoxItem Content="Hjærm"/>
+                    <ComboBoxItem Content="Videbæk"/>
+                    <ComboBoxItem Content="Thorsminde"/>
+                    <ComboBoxItem Content="Ræhr"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="3" MinHeight="35">
+                <Button Content="Opret" Height="35" Width="120" Foreground="GhostWhite" Margin="3" Background="Black" FontSize="14"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="2" Margin="3" MinHeight="35">
+                <Button Content="Rediger/Slet" Height="35" Width="120" Foreground="GhostWhite" Margin="3" Background="Black" FontSize="14"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="3" Margin="3" MinHeight="35">
+                <Button Content="Forestillinger" Height="35" Width="120" Foreground="GhostWhite" Margin="3" Background="Black" FontSize="14"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="4">
+                <StackPanel Grid.Row="0" Grid.Column="3" Margin="3" MinHeight="35">
+                    <Button Content="Placeholder" Height="35" Width="120" Foreground="GhostWhite" Margin="3" Background="Black" FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="5">
+                <StackPanel Grid.Row="0" Grid.Column="3" Margin="3" MinHeight="35">
+                    <Button Content="Placeholder" Height="35" Width="120" Foreground="GhostWhite" Margin="3" Background="Black" FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="6">
+                <StackPanel Grid.Row="0" Grid.Column="3" Margin="3" MinHeight="35">
+                    <Button Content="Indstillinger" Height="35" Width="120" Foreground="Black" Margin="3" Background="DarkGray" FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
 
 
-</Grid>
+        </Grid>
+
+        <!-- Separator under menu -->
+        <Grid Grid.Row="1">
+            <Separator HorizontalAlignment="Stretch" Margin="1,1,1,5"/>
+        </Grid>
+
+        <!-- MainFrame -->
+        <Grid Grid.Row="2">
+            <Frame x:Name="MainFrame"
+                   Grid.Row="5"
+                   NavigationUIVisibility="Hidden"
+                   Margin="20" />
+        </Grid>
+
+        <!-- Footer: Separator og logo i bunden -->
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Separator Grid.Row="0" HorizontalAlignment="Stretch" Margin="1,5,1,1"/>
+            <Image Grid.Row="1" Source="/Images/LogoWithText.png" MaxHeight="90" HorizontalAlignment="Right" Margin="3"/>
+        </Grid>
+
+    </Grid>
 
 </Window>
