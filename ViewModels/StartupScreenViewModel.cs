@@ -18,14 +18,14 @@ namespace MovieOrganiser2000.ViewModels
         //Definerer kommandoer til XAML binding
 
         public ICommand RunTheProgramCommand { get; }
-        public ICommand CloseTheWindowCommand { get; }
+        public ICommand CloseTheStartupScreenCommand { get; }
 
         //Constructor for StartupScreenViewModel
 
         public StartupScreenViewModel()
         {
             RunTheProgramCommand = new RelayCommand(_ => RunTheProgram());
-            CloseTheWindowCommand = new RelayCommand(_ => CloseTheWindow());
+            CloseTheStartupScreenCommand = new RelayCommand(_ => CloseTheStartupScreen());
         }
 
         //Til at åbne MainWindow.xaml
@@ -34,11 +34,11 @@ namespace MovieOrganiser2000.ViewModels
         {
             var window = new MainWindow(); 
             window.Show();
-            CloseTheWindow(); // Lukker StartupScreen vinduet når MainWindow åbnes
+            CloseTheStartupScreen(); // Lukker StartupScreen vinduet når MainWindow åbnes
         }
 
         //Til at lukke StartupScreen vinduet
-        private void CloseTheWindow()
+        private void CloseTheStartupScreen()
             {
             var window = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w is StartupScreen);
             window.Close();
