@@ -53,6 +53,28 @@ namespace MovieOrganiser2000.ViewModels
             }
         }
 
+        private string _director;
+        public string Director
+        {
+            get => _director;
+            set
+            {
+                _director = value;
+                OnPropertyChanged(nameof(Director));
+            }
+        }
+
+        private DateOnly _premiere;
+        public DateOnly Premiere
+        {
+            get => _premiere;
+            set
+            {
+                _premiere = value;
+                OnPropertyChanged(nameof(Premiere));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -74,12 +96,14 @@ namespace MovieOrganiser2000.ViewModels
 
         private void AddMovie()
         {
-            var movie = new Movie(Title, MovieLength, SelectedGenre);
+            var movie = new Movie(Title, MovieLength, SelectedGenre, Director, Premiere);
             _movieManager.AddMovie(movie);
 
             Title = "";
             MovieLength = 0;
             SelectedGenre = Genre.Ukendt;
+            Director = "";
+            Premiere = default;
         }
 
     }
