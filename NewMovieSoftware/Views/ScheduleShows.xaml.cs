@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MovieOrganiser2000.ViewModels;
+using MovieOrganiser2000.Models;
 
 namespace MovieOrganiser2000.Views
 {
@@ -24,7 +25,7 @@ namespace MovieOrganiser2000.Views
         {
             InitializeComponent();
 
-            var _movieTheaterService = new MovieTheaterService();
+            var _movieTheaterService = new TheaterService();
             var viewModel = new ScheduleShowViewModel(_movieTheaterService);
 
             DataContext = viewModel;

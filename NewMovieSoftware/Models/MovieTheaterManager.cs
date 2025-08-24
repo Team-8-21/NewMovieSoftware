@@ -65,14 +65,14 @@ namespace MovieOrganiser2000.Models
             return _theaters.FirstOrDefault(t => t.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase));
         }
 
-        public async Task<List<MovieScreen>> IMovieTheater.GetScreensForTheaterAsync(int theaterId)
+        public async Task<List<MovieScreen>> GetScreensForTheaterAsync(int theaterId)
         {
             await Task.Delay(50);
             var theater = _theaters.FirstOrDefault(t => t.Id == theaterId);
             return theater?.Screens.ToList() ?? new List<MovieScreen>();
         }
 
-        public async Task<List<MovieScreen>> IMovieTheater.GetAvailableScreensForTheaterAsync(int theaterId)
+        public async Task<List<MovieScreen>> GetAvailableScreensForTheaterAsync(int theaterId)
         {
             await Task.Delay(50);
             var theater = _theaters.FirstOrDefault(t => t.Id == theaterId);
