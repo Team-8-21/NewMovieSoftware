@@ -31,7 +31,7 @@ namespace MovieOrganiser2000.ViewModels
             }
         }
 
-        private string _title;
+        private string _title = "";
         public string Title
         {
             get => _title;
@@ -53,7 +53,7 @@ namespace MovieOrganiser2000.ViewModels
             }
         }
 
-        private string _director;
+        private string _director = "";
         public string Director
         {
             get => _director;
