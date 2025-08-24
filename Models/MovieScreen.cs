@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xaml.Schema;
-
 
 namespace MovieOrganiser2000.Models
 {
-    public class MovieTheater
+    public class MovieScreen
     {
-
         public int _id;
         public string _name;
-        
+        private bool _isAvailable;
+
         public int Id
         {
             get => _id;
@@ -35,21 +33,28 @@ namespace MovieOrganiser2000.Models
                 OnPropertyChanged(nameof(Name));
             }
         }
-        public ObservableCollection<MovieScreen> Screens { get; set; }
 
-        public MovieTheater(int id, string name, string v)
+        public bool IsAvailable
+        {
+            get => _isAvailable;
+            set
+            {
+                _isAvailable = value;
+                OnPropertyChanged(nameof(IsAvailable));
+            }
+        }
+
+        public MovieScreen(int id, string name, bool isAvailable = true)
         {
             Id = id;
             Name = name;
-            Screens = new ObservableCollection<MovieScreen>();
+            IsAvailable = isAvailable;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         }
     }
 }
