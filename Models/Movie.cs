@@ -11,12 +11,16 @@ namespace MovieOrganiser2000.Models
         public string Title { get; set; }
         public int MovieLength { get; set; }
         public Genre Genre { get; set; }
+        public string Director { get; set; }
+        public DateOnly Premiere { get; set; }
 
-        public Movie(string title, int movieLength, Genre genre)
+        public Movie(string title, int movieLength, Genre genre, string director, DateOnly premiere) 
         {
             Title = title ?? "Ukendt";
             MovieLength = movieLength;
             Genre = genre;
+            Director = director ?? "Ukendt";
+            Premiere = premiere;
         }
 
     }

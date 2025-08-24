@@ -7,10 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xaml.Schema;
 
+
 namespace MovieOrganiser2000.Models
 {
     public class MovieTheater
     {
+
         public int _id;
         public string _name;
         
@@ -47,6 +49,7 @@ namespace MovieOrganiser2000.Models
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         }
     }
 }
