@@ -27,11 +27,12 @@ namespace MovieOrganiser2000.ViewModels
             Theaters = new ObservableCollection<MovieTheater>();
             AvailableScreens = new ObservableCollection<MovieScreen>();
 
-            LoadTheatersCommand = new RelayCommand(async () => await LoadTheatersAsync());
-            ScheduleShowCommand = new RelayCommand(async () => await ScheduleShowAsync(), CanScheduleShow);
+            LoadTheatersCommand = new RelayCommand(async _ => await LoadTheatersAsync());
+            ScheduleShowCommand = new RelayCommand(async _ => await ScheduleShowAsync(), _ => CanScheduleShow());
 
             _ = LoadTheatersAsync();
         }
+
         public ObservableCollection<MovieTheater> Theaters { get; }
         public ObservableCollection<MovieScreen> AvailableScreens { get; }
 
@@ -40,31 +41,23 @@ namespace MovieOrganiser2000.ViewModels
             get => _selectedTheater;
             set
             {
-                if (SetProperty(ref _selectedTheater, value))
+                if (SetProperty(ref _selectedTheater, value, nameof(SelectedTheater)))
                 {
                     _ = LoadScreensForSelectedTheaterAsync();
                 }
             }
         }
 
-        private bool SetProperty(ref MovieTheater selectedTheater, MovieTheater value)
-        {
-            throw new NotImplementedException();
-        }
-
         public MovieScreen SelectedScreen
         {
             get => _selectedScreen;
-            set
-            {
-                SetProperty(ref _selectedScreen, value);
-            }
+            set => SetProperty(ref _selectedScreen, value, nameof(SelectedScreen));
         }
 
         public bool IsLoading
         {
             get => _isLoading;
-            set => SetProperty(ref _isLoading, value);
+            set => SetProperty(ref _isLoading, value, nameof(IsLoading));
         }
 
         public ICommand LoadTheatersCommand { get; }
@@ -126,6 +119,16 @@ namespace MovieOrganiser2000.ViewModels
 
             // Optionally, refresh the available screens
             await LoadScreensForSelectedTheaterAsync();
+        }
+
+        // GENERIC SetProperty helper
+        protected bool SetProperty<T>(ref T field, T value, string propertyName)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value))
+                return false;
+            field = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            return true;
         }
     }
 }
