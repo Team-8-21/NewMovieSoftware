@@ -30,7 +30,7 @@
 
             <!-- Kolonner under overskriften -->
 
-            <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+            <Grid Grid.Row="1" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <!-- venstre kolonne -->
@@ -58,27 +58,27 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBox Grid.Row="0" Grid.Column="0" 
+                    <TextBlock Grid.Row="0" Grid.Column="0" 
                        Text="Filmtitel"  
                        FontSize="20" 
-                       Margin="3"
+                       Margin="10,10,10,10"
                        Height="30"
                        Width="300"/>
 
                     <TextBox Grid.Row="1" Grid.Column="0" 
                      Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"   
-                     TextWrapping="Wrap"                  
+                     TextWrapping="Wrap"                 
                      MinWidth="300"
                      MaxHeight="30"
                      MinHeight="25"
-                     BorderBrush="Black" 
+                     BorderBrush="Black"
                      FontSize="20"
-                     Margin="3"/>
+                    />
 
-                    <TextBox Grid.Row="2" Grid.Column="0" 
+                    <TextBlock Grid.Row="2" Grid.Column="0" 
                    Text="Spilletid (angiv i minutter)"   
                    FontSize="20"
-                   Margin="3,20,3,3"
+                   Margin="10,10,10,10"
                    Height="30"
                    Width="300"/>
 
@@ -91,10 +91,10 @@
                      FontSize="20"
                      Margin="3,20,3,3"/>
 
-                    <TextBox Grid.Row="4" Grid.Column="0" 
+                    <TextBlock Grid.Row="4" Grid.Column="0" 
                    Text="Genre" 
                    FontSize="20"
-                   Margin="3,20,3,3"
+                   Margin="10,10,10,10"
                    Height="22"
                    Width="300"/>
 
@@ -122,7 +122,8 @@
                 <!-- Højre kolonne, listbox med alle tilføjede film -->
 
                 <Grid Grid.Column="1" Margin="10,10,10,10" HorizontalAlignment="Stretch">
-                    <ListBox Height="400" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <TextBlock FontSize="19" Text="Seneste tilføjede film"></TextBlock>
+                    <ListBox Height="600" ScrollViewer.VerticalScrollBarVisibility="Auto">
                             <ListBoxItem Content="Film Placeholder" />
                         <ListBoxItem Content="Film Placeholder" />
                         <ListBoxItem Content="Film Placeholder" />
