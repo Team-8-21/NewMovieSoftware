@@ -29,7 +29,7 @@ namespace MovieOrganiser2000.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService?.Navigate(new ScheduleShows());
         }
     }
 }
