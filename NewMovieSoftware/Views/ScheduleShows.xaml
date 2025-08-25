@@ -1,4 +1,4 @@
-﻿<Window x:Class="MovieOrganiser2000.Views.ScheduleShows"
+﻿<Page x:Class="MovieOrganiser2000.Views.ScheduleShows"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -35,7 +35,7 @@
              Width="590" 
              Height="50"
              BorderBrush="Black" 
-             FontSize="22"/>
+             FontSize="22" TextChanged="TextBox_TextChanged_1"/>
 
         <Label Content="Vælg dato"
                HorizontalAlignment="Left"
@@ -115,7 +115,7 @@
               Grid.Row="1" 
               VerticalAlignment="Top" 
               Width="590" Height="50"
-              FontSize="22" />
+              FontSize="22" SelectionChanged="ComboBox_SelectionChanged" />
 
 
         <Button Command="{Binding AddShowCommand}"
@@ -217,4 +217,4 @@
 
     </Grid>
 
-</Window>
+</Page>

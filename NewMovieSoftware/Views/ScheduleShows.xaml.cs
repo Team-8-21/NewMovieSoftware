@@ -19,7 +19,7 @@ namespace MovieOrganiser2000.Views
     /// <summary>
     /// Interaction logic for ScheduleShows.xaml
     /// </summary>
-    public partial class ScheduleShows : Window
+    public partial class ScheduleShows : Page
     {
         public ScheduleShows()
         {
@@ -37,6 +37,16 @@ namespace MovieOrganiser2000.Views
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
 
         }
