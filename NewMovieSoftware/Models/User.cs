@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MovieSoftware.MVVM.Model.Classes
+﻿namespace MovieSoftware.MVVM.Model.Classes
 {
     public class User
     {
@@ -13,18 +7,30 @@ namespace MovieSoftware.MVVM.Model.Classes
 
         public override string ToString()
         {
-            return $"{UserName}, {Password}";
+            // Ingen mellemrum længere
+            return $"{UserName},{Password}";
         }
 
         public static User FromString(string input)
         {
-            string[] parts = input.Split(',');
+            if (string.IsNullOrWhiteSpace(input))
+                return null;
+
+            //Split kun på det første komma
+            string[] parts = input.Split(new[] { ',' }, 2);
+
+            if (parts.Length < 2)
+                throw new FormatException($"Ugyldig user-linje: '{input}'");
+
+            //Trim mellemrum væk
+            string username = parts[0].Trim();
+            string password = parts[1].Trim();
+
             return new User
             {
-                UserName = parts[0],
-                Password = parts[1]
+                UserName = username,
+                Password = password
             };
         }
-
     }
 }
