@@ -9,10 +9,12 @@ namespace MovieOrganiser2000.Models
     public class Booking
     {
        public int Amount { get; set; }
+        public Customer Customer { get; set; }
 
-        public Booking(int amount)
+        public Booking(int amount, Customer customer)
         {
             Amount = amount = 0;
+            Customer = customer;
         }
 
 
