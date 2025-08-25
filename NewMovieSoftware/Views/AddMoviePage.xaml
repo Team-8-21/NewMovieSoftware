@@ -109,7 +109,7 @@
                     BorderBrush="{x:Null}"/>
 
             <Button Grid.Column="2" 
-                    Content="Funktion"
+                    Content="Planlæg visning"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -117,7 +117,7 @@
                     Width="230" 
                     Background="Black" 
                     BorderBrush="{x:Null}" 
-                    Foreground="White"/>
+                    Foreground="White" Click="Button_Click"/>
 
             <Button Grid.Column="3" 
                     Content="Funktion"

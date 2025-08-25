@@ -26,5 +26,10 @@ namespace MovieOrganiser2000.Views
             InitializeComponent();
             DataContext = new AddMovieViewModel();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

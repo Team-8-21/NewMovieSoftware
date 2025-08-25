@@ -20,7 +20,7 @@ namespace MovieOrganiser2000
         public MainWindow()
         {
             InitializeComponent();
-
+            MainFrame.Navigate(new AddMoviePage()); // Navigér til startside
         }
         private void OpenAddMoviePage_Click(object sender, RoutedEventArgs e)
         {
