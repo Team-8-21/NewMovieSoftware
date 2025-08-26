@@ -1,7 +1,4 @@
-﻿using MovieOrganiser2000.Helpers;
-using MovieOrganiser2000.Models;
-using MovieSoftware.MVVM.Model.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,6 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MovieOrganiser2000.Helpers;
+using MovieOrganiser2000.Models;
+using MovieOrganiser2000.Repositories;
+using MovieSoftware.MVVM.Model.Classes;
 
 namespace MovieOrganiser2000.ViewModels
 {
@@ -39,6 +40,7 @@ namespace MovieOrganiser2000.ViewModels
             {
                 _title = value;
                 OnPropertyChanged(nameof(Title));
+                CommandManager.InvalidateRequerySuggested(); 
             }
         }
 
@@ -50,6 +52,7 @@ namespace MovieOrganiser2000.ViewModels
             {
                 _movieLength = value;
                 OnPropertyChanged(nameof(MovieLength));
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -84,10 +87,13 @@ namespace MovieOrganiser2000.ViewModels
 
         public ICommand AddMovieCommand { get; }
 
-        private MovieManager _movieManager = new MovieManager(); // Eller inject senere
 
-        public AddMovieViewModel()
+        private readonly IMovieRepository _repo;
+
+        public AddMovieViewModel(IMovieRepository repo)
         {
+            _repo = repo ?? throw new ArgumentNullException(nameof(repo));
+
             Genres = new ObservableCollection<Genre>((Genre[])Enum.GetValues(typeof(Genre)));
             SelectedGenre = Genre.Ukendt;
 
@@ -97,7 +103,7 @@ namespace MovieOrganiser2000.ViewModels
         private void AddMovie()
         {
             var movie = new Movie(Title, MovieLength, SelectedGenre, Director, Premiere);
-            _movieManager.AddMovie(movie);
+            _repo.AddMovie(movie);   // Gemmer nu i JSON-filen ✅
 
             Title = "";
             MovieLength = 0;
