@@ -55,7 +55,7 @@ namespace MovieSoftware.MVVM.ViewModel
             
             AddUserCommand = new RelayCommand(_ => AddUser(), _ => CanAddUser());
             SaveUserCommand = new RelayCommand(_ => SaveUser(), _ => CanSaveUser());
-            ValidateUserLoginCommand = new RelayCommand(_ => ValidateUserLogin(), _ => CanLoginUser());
+            // ValidateUserLoginCommand = new RelayCommand(_ => ValidateUserLogin(), _ => CanLoginUser());
             DeleteUserCommand = new RelayCommand(_ => DeleteUser(), _ => CanDeleteUser());
         }
 
@@ -92,7 +92,7 @@ namespace MovieSoftware.MVVM.ViewModel
             SelectedUser = null;
         }
 
-        public void ValidateUserLogin()
+        /* public void ValidateUserLogin()
         {
             bool loginValue = userRepository.ValidateUserLogin(UserName, PassWord);
             var addMovieVM = new AddMovieViewModel(); //hurtigt fix, sætter nyt instans af AddMovieViewModel og sætter egenskab for CurrentUser
@@ -108,7 +108,7 @@ namespace MovieSoftware.MVVM.ViewModel
                 MessageBox.Show($"Username eller adgangskode er forkert. Prøv igen"); //, MessageBoxButton.OK, MessageBoxImage.Information);)
 
             }
-        }
+        } */
 
         private bool UsersFilter(object item) //filter users
         {

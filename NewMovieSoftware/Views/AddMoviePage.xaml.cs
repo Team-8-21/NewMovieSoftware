@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MovieOrganiser2000.ViewModels;
+using MovieOrganiser2000.Models;
+using MovieOrganiser2000.Repositories;
 
 namespace MovieOrganiser2000.Views
 {
@@ -24,10 +26,13 @@ namespace MovieOrganiser2000.Views
         public AddMoviePage()
         {
             InitializeComponent();
-            DataContext = new AddMovieViewModel();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+            var path = @"D:\Programmer\Microsoft Visual Studio\repos\Team821_MovieSoftware\NewMovieSoftware\Data\movies.json";
+            DataContext = new AddMovieViewModel(new FileMovieRepository(path));
+        }
+                
+
+        private void Button_Click_ScheduleShow(object sender, System.Windows.RoutedEventArgs e)
         {
             NavigationService?.Navigate(new ScheduleShows());
         }
