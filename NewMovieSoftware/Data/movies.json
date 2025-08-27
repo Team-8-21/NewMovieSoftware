@@ -5,5 +5,12 @@
     "Genre": 1,
     "Director": "",
     "Premiere": "0001-01-01"
+  },
+  {
+    "Title": "Test Spiderman 2",
+    "MovieLength": 220,
+    "Genre": 1,
+    "Director": "",
+    "Premiere": "0001-01-01"
   }
 ]
