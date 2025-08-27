@@ -27,20 +27,20 @@ namespace MovieOrganiser2000.Models
             };
 
             // Add screens to each theater
-            theaters[0].Screens.Add(new MovieScreen(1, "Screen 1"));
-            theaters[0].Screens.Add(new MovieScreen(2, "Screen 2"));
+            theaters[0].Screens.Add(new MovieScreen(1, "Screen 1", 80));
+            theaters[0].Screens.Add(new MovieScreen(2, "Screen 2", 40));
 
-            theaters[1].Screens.Add(new MovieScreen(1, "Screen 1"));
-            theaters[1].Screens.Add(new MovieScreen(2, "Screen 2"));
-            theaters[1].Screens.Add(new MovieScreen(3, "Screen 3"));
+            theaters[1].Screens.Add(new MovieScreen(1, "Screen 1", 60));
+            theaters[1].Screens.Add(new MovieScreen(2, "Screen 2", 80));
+            theaters[1].Screens.Add(new MovieScreen(3, "Screen 3", 50));
 
-            theaters[2].Screens.Add(new MovieScreen(1, "Screen 1"));
-            theaters[2].Screens.Add(new MovieScreen(2, "Screen 2"));
+            theaters[2].Screens.Add(new MovieScreen(1, "Screen 1", 50));
+            theaters[2].Screens.Add(new MovieScreen(2, "Screen 2", 60));
 
-            theaters[3].Screens.Add(new MovieScreen(1, "Screen 1"));
-            theaters[3].Screens.Add(new MovieScreen(2, "Screen 2"));
-            theaters[3].Screens.Add(new MovieScreen(3, "Screen 3"));
-            theaters[3].Screens.Add(new MovieScreen(4, "Screen 4"));
+            theaters[3].Screens.Add(new MovieScreen(1, "Screen 1", 76));
+            theaters[3].Screens.Add(new MovieScreen(2, "Screen 2", 50));
+            theaters[3].Screens.Add(new MovieScreen(3, "Screen 3", 25));
+            theaters[3].Screens.Add(new MovieScreen(4, "Screen 4", 25));
 
             return theaters;
         }

@@ -221,7 +221,7 @@
                Grid.Row="1"
                VerticalAlignment="Top"
                FontSize="36"/>
-        <TextBox Text="{Binding SelectedScreen.SeatsAvailable}"
+        <TextBox Text="{Binding SelectedScreen.SeatingCapacity}"
                  IsReadOnly="True"
                  HorizontalAlignment="Left"
                  Margin="479,624,0,0"

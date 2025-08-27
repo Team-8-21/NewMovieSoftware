@@ -59,7 +59,22 @@ namespace MovieOrganiser2000.Views
             // 4) Brug AppData-filen i dit repository
             var movieRepo = new FileMovieRepository(moviesPath);
 
-            DataContext = new ScheduleShowViewModel(theaterService, movieRepo);
+            // Tilføj Schedule-repo
+            var schedulesPath = Path.Combine(appDir, "showschedules.json");
+
+            if (!File.Exists(schedulesPath))
+            {
+                var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                var seedPath = Path.Combine(baseDir, "Data", "showschedules.json");
+                if (File.Exists(seedPath))
+                    File.Copy(seedPath, schedulesPath, overwrite: false);
+                else
+                    File.WriteAllText(schedulesPath, "[]");
+            }
+
+            var scheduleRepo = new FileScheduleRepository(schedulesPath);
+
+            DataContext = new ScheduleShowViewModel(theaterService, movieRepo, scheduleRepo);
         }
         private void Button_Click_AddMoviePage (object sender, System.Windows.RoutedEventArgs e)
         {

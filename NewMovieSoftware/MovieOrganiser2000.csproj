@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Data\movies.json" />
+    <None Remove="Data\showschedules.json" />
     <None Remove="Images\LoginScreen.png" />
     <None Remove="Images\Logo.png" />
     <None Remove="Images\LogoWithText.png" />
@@ -19,6 +20,9 @@
   <ItemGroup>
     <Content Include="Data\movies.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\showschedules.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\LoginScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

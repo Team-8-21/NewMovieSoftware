@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace MovieOrganiser2000.Models
         public int _id;
         public string _name;
         private bool _isAvailable;
+        private int _seatingCapacity;
 
         public int Id
         {
@@ -44,10 +46,21 @@ namespace MovieOrganiser2000.Models
             }
         }
 
-        public MovieScreen(int id, string name, bool isAvailable = true)
+        public int SeatingCapacity
+        {
+            get => _seatingCapacity;
+            set
+            {
+                _seatingCapacity = value;
+                OnPropertyChanged(nameof(SeatingCapacity));
+            }
+        }
+
+        public MovieScreen(int id, string name, int seatingCapacity, bool isAvailable = true)
         {
             Id = id;
             Name = name;
+            SeatingCapacity = seatingCapacity;
             IsAvailable = isAvailable;
         }
 

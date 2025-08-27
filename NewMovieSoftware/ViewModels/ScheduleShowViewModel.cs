@@ -1,12 +1,14 @@
-﻿// ScheduleShowViewModel.cs
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MovieOrganiser2000.Helpers;
 using MovieOrganiser2000.Models;
 using MovieOrganiser2000.Repositories;
+using ScheduleOrganiser2000.Repositories;
 
 namespace MovieOrganiser2000.ViewModels
 {
@@ -14,6 +16,7 @@ namespace MovieOrganiser2000.ViewModels
     {
         private readonly IMovieTheater _movieTheaterService;
         private readonly IMovieRepository _movieRepository;
+        private readonly IScheduleRepository _repo;
 
         private MovieTheater _selectedTheater;
         private MovieScreen _selectedScreen;
@@ -22,23 +25,29 @@ namespace MovieOrganiser2000.ViewModels
         private bool _isLoading;
         private int _movieLength;
         private string _selectedTime;
-        public ObservableCollection<string> AvailableTimes { get; } = new();
+        private string schedulesPath;
 
+        public RelayCommand AddScheduleCommand { get; private set; }
+        public ObservableCollection<string> AvailableTimes { get; } = new();
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public ScheduleShowViewModel(IMovieTheater movieTheaterService,
-                                     IMovieRepository movieRepository)
+                                     IMovieRepository movieRepository,
+                                     IScheduleRepository repo)
         {
             _movieTheaterService = movieTheaterService;
             _movieRepository = movieRepository;
+            _repo = repo ?? throw new ArgumentNullException(nameof(repo));
 
             Theaters = new ObservableCollection<MovieTheater>();
             AvailableScreens = new ObservableCollection<MovieScreen>();
             Movies = new ObservableCollection<Movie>();
+            AvailableTimes = new ObservableCollection<string>();
 
             LoadTheatersCommand = new RelayCommand(async _ => await LoadTheatersAsync());
             ScheduleShowCommand = new RelayCommand(async _ => await ScheduleShowAsync(), _ => CanScheduleShow());
+            AddScheduleCommand = new RelayCommand(_ => AddShow());
 
             _ = LoadTheatersAsync();
             _ = LoadMoviesAsync();
@@ -59,12 +68,13 @@ namespace MovieOrganiser2000.ViewModels
                     _ = LoadScreensForSelectedTheaterAsync();
             }
         }
-       
+
         public string SelectedTime
         {
             get => _selectedTime;
             set => SetProperty(ref _selectedTime, value, nameof(SelectedTime));
         }
+
         public MovieScreen SelectedScreen
         {
             get => _selectedScreen;
@@ -104,6 +114,8 @@ namespace MovieOrganiser2000.ViewModels
 
         public ICommand LoadTheatersCommand { get; }
         public ICommand ScheduleShowCommand { get; }
+        public ICommand AddShowCommand { get; }
+        public object AddSchedule { get; private set; }
 
         // --- LOAD DATA ---
         private async Task LoadTheatersAsync()
@@ -117,6 +129,7 @@ namespace MovieOrganiser2000.ViewModels
             }
             finally { IsLoading = false; }
         }
+
         private void LoadTimes()
         {
             AvailableTimes.Clear();
@@ -152,7 +165,7 @@ namespace MovieOrganiser2000.ViewModels
         {
             var all = _movieRepository.GetAll().ToList();
             System.Diagnostics.Debug.WriteLine($"[Schedule] Loaded {all.Count} movies");
-            
+
             Movies.Clear();
             foreach (var m in all)
             {
@@ -160,6 +173,37 @@ namespace MovieOrganiser2000.ViewModels
                 Movies.Add(m);
             }
             return Task.CompletedTask;
+        }
+
+        private void AddShow()
+        {
+            InitializeComponent();
+
+            // Vælg Local eller Roaming
+            var appDataRoot = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            var appDir = Path.Combine(appDataRoot, "MovieOrganiser2000");
+            Directory.CreateDirectory(appDir);
+
+            schedulesPath = Path.Combine(appDir, "showschedules.json");
+
+            // Seed første gang fra projektets Data\showschedules.json
+            if (!File.Exists(schedulesPath))
+            {
+                var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                var seedPath = Path.Combine(baseDir, "Data", "showschedules.json");
+                if (File.Exists(seedPath))
+                    File.Copy(seedPath, schedulesPath, overwrite: false);
+                else
+                    File.WriteAllText(schedulesPath, "[]");
+            }
+
+            var repo = new FileScheduleRepository(schedulesPath);
+            // OBS: Du kan her åbne en ny View med AddScheduleViewModel(repo), hvis nødvendigt.
+        }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
         }
 
         // --- COMMAND LOGIK ---
