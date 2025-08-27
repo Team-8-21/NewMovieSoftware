@@ -15,33 +15,46 @@ namespace MovieOrganiser2000.Models
 
         public int _id;
         public string _name;
-        
+        private string _location;
+
         public int Id
         {
             get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged(nameof(Id));
+            set 
+            { 
+                if (_id == value) return; 
+                _id = value; 
+                OnPropertyChanged(nameof(Id)); 
             }
         }
 
         public string Name
         {
             get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged(nameof(Name));
+            set 
+            { 
+                if (_name == value) return; 
+                _name = value; 
+                OnPropertyChanged(nameof(Name)); 
             }
         }
-        public ObservableCollection<MovieScreen> Screens { get; set; }
 
-        public MovieTheater(int id, string name, string v)
+        public string Location
+        {
+            get => _location;
+            set { 
+                if (_location == value) return; 
+                _location = value; 
+                OnPropertyChanged(nameof(Location)); 
+            }
+        }
+        public ObservableCollection<MovieScreen> Screens { get; } = new();
+
+        public MovieTheater(int id, string name, string location)
         {
             Id = id;
             Name = name;
-            Screens = new ObservableCollection<MovieScreen>();
+            _location = location ?? string.Empty;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -51,5 +64,6 @@ namespace MovieOrganiser2000.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
+        
     }
 }

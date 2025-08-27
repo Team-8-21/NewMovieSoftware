@@ -26,7 +26,7 @@ namespace MovieOrganiser2000.Models
     }
     public enum Genre
     {
-        Ukendt = 0, //
+        Ukendt = 0, 
         Action = 1,
         Krimi = 2,
         Historisk = 3,
