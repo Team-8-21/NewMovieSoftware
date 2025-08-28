@@ -43,7 +43,7 @@
             
             <StackPanel Grid.Row="3">
                 <!-- Click="OpenAddMoviePage_Click"-->
-                <Button Margin="30,30,30,30" Padding="20,10" FontFamily="Tahoma" FontSize="44" Content="Start Programmet" Command="{Binding RunTheProgramCommand}"/>
+                <Button Margin="30,30,30,30" Padding="20,10" FontFamily="Tahoma" FontSize="44" Content="Start Programmet" Command="{Binding RunTheProgramCommand}" Click="StartProgram_Click"/>
 
             </StackPanel>
             
