@@ -204,7 +204,7 @@
                   FontSize="22"/>
 
         <!-- Gem visning -->
-        <Button Command="{Binding AddShowCommand}"
+        <Button Command="{Binding AddScheduleCommand}"
                 Content="Gem visning"
                 HorizontalAlignment="Left"
                 Margin="1037,624,0,0"
