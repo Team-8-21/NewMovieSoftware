@@ -13,7 +13,7 @@ namespace MovieOrganiser2000.Models
 
         public Booking(int amount, Customer customer)
         {
-            Amount = amount = 0;
+            Amount = amount;
             Customer = customer;
         }
 
