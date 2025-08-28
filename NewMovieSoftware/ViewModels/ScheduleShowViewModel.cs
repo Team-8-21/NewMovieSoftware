@@ -191,6 +191,28 @@ namespace MovieOrganiser2000.ViewModels
                 && !IsLoading;
         }
 
+        private string _notificationText;
+        private bool _isNotificationVisible;
+
+        public string NotificationText
+        {
+            get => _notificationText;
+            set => SetProperty(ref _notificationText, value, nameof(NotificationText));
+        }
+
+        public bool IsNotificationVisible
+        {
+            get => _isNotificationVisible;
+            set => SetProperty(ref _isNotificationVisible, value, nameof(IsNotificationVisible));
+        }
+
+        private async Task ShowNotificationAsync(string message, int ms = 2000)
+        {
+            NotificationText = message;
+            IsNotificationVisible = true;
+            await Task.Delay(ms);
+            IsNotificationVisible = false;
+        }
         private async Task ScheduleShowAsync()
         {
             /*if (!CanScheduleShow()) return;
@@ -288,7 +310,10 @@ namespace MovieOrganiser2000.ViewModels
                 _scheduleRepository.AddSchedule(schedule);
                 System.Diagnostics.Debug.WriteLine("AddSchedule() completed successfully");
 
-                // Clear selections
+                _scheduleRepository.AddSchedule(schedule);
+
+                // Vis feedback + nulstil felter
+                await ShowNotificationAsync("Visningen er gemt ✔", 1000);
                 ClearSelections();
                 System.Diagnostics.Debug.WriteLine("=== ScheduleShowAsync END ===");
             }
@@ -337,10 +362,17 @@ namespace MovieOrganiser2000.ViewModels
 
         private void ClearSelections()
         {
-            SelectedMovie = null;
+            // Nulstil biografen også
+            SelectedTheater = null;
+
+            // Nullstil salene
+            AvailableScreens.Clear();
             SelectedScreen = null;
+
+            SelectedMovie = null;            
             SelectedDate = null;
             SelectedTime = "19:00";
+            MovieLength = 0;
         }
 
 

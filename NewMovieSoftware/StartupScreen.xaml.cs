@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MovieOrganiser2000
 {
@@ -24,6 +25,17 @@ namespace MovieOrganiser2000
         {
             InitializeComponent();
             DataContext = new StartupScreenViewModel();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void StartProgram_Click(object sender, RoutedEventArgs e)
+        {
+
+            Dispatcher.BeginInvoke(new Action(() => this.Close()),
+                            DispatcherPriority.ApplicationIdle);
         }
     }
 }
