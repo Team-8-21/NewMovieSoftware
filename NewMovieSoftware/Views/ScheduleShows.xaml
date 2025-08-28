@@ -212,7 +212,7 @@
                 VerticalAlignment="Top"
                 FontSize="36"
                 Width="592" Height="54"
-                Background="#FFEFE5DA"/>
+                Background="#FFEFE5DA" Click="Button_Click_1"/>
 
         <!-- Antal ledige pladser (read-only fra valgt sal) -->
         <Label Content="Antal ledige pladser"

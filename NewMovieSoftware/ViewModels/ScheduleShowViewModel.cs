@@ -175,6 +175,8 @@ namespace MovieOrganiser2000.ViewModels
             return Task.CompletedTask;
         }
 
+     
+
         private void AddShow()
         {
             InitializeComponent();
