@@ -28,7 +28,7 @@ namespace MovieOrganiser2000.ViewModels
         private string schedulesPath;
 
         public RelayCommand AddScheduleCommand { get; private set; }
-        public ObservableCollection<string> AvailableTimes { get; } = new();
+        // public ObservableCollection<string> AvailableTimes { get; private set; };
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -38,7 +38,8 @@ namespace MovieOrganiser2000.ViewModels
         {
             _movieTheaterService = movieTheaterService;
             _movieRepository = movieRepository;
-            _scheduleRepository = scheduleRepository ?? throw new ArgumentNullException(nameof(movieRepository));
+            //_scheduleRepository = scheduleRepository ?? throw new ArgumentNullException(nameof(movieRepository));
+            _scheduleRepository = scheduleRepository ?? throw new ArgumentNullException(nameof(scheduleRepository));
             //_repo = repo ?? throw new ArgumentNullException(nameof(repo));
 
             Theaters = new ObservableCollection<MovieTheater>();
@@ -116,7 +117,7 @@ namespace MovieOrganiser2000.ViewModels
 
         public ICommand LoadTheatersCommand { get; }
         public ICommand ScheduleShowCommand { get; }
-        public ICommand AddShowCommand { get; }
+        //public ICommand AddShowCommand { get; }
         // public object AddSchedule { get; private set; }
 
         // --- LOAD DATA ---
@@ -185,6 +186,7 @@ namespace MovieOrganiser2000.ViewModels
                 && SelectedScreen != null
                 && SelectedMovie != null
                 && SelectedDate != null
+                && !string.IsNullOrEmpty(SelectedTime)
                 && !IsLoading;
         }
 
@@ -200,7 +202,7 @@ namespace MovieOrganiser2000.ViewModels
             // Evt. markér skærm som optaget og refresh
             SelectedScreen.IsAvailable = false;
             await LoadScreensForSelectedTheaterAsync();
-            */
+            
             if (!CanScheduleShow()) return;
 
             try
@@ -238,6 +240,61 @@ namespace MovieOrganiser2000.ViewModels
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error scheduling show: {ex.Message}");
+            }
+            */
+
+            //DEBUG
+            System.Diagnostics.Debug.WriteLine("=== ScheduleShowAsync START ===");
+            System.Diagnostics.Debug.WriteLine($"CanScheduleShow: {CanScheduleShow()}");
+            System.Diagnostics.Debug.WriteLine($"SelectedTheater: {SelectedTheater?.Name}");
+            System.Diagnostics.Debug.WriteLine($"SelectedScreen: {SelectedScreen?.Name}");
+            System.Diagnostics.Debug.WriteLine($"SelectedMovie: {SelectedMovie?.Title}");
+            System.Diagnostics.Debug.WriteLine($"SelectedDate: {SelectedDate}");
+            System.Diagnostics.Debug.WriteLine($"SelectedTime: {SelectedTime}");
+
+            if (!CanScheduleShow())
+            {
+                System.Diagnostics.Debug.WriteLine("CanScheduleShow returned false - EXITING");
+                return;
+            }
+
+            try
+            {
+                // Parse the selected time
+                if (!TimeOnly.TryParse(SelectedTime, out var showTime))
+                {
+                    System.Diagnostics.Debug.WriteLine("Invalid time format - EXITING");
+                    return;
+                }
+
+                System.Diagnostics.Debug.WriteLine($"Parsed time successfully: {showTime}");
+
+                // Create a new schedule
+                var schedule = new Schedule
+                {
+                    ScheduleId = new Random().Next(1000, 9999),
+                    Movie = SelectedMovie,
+                    Date = DateOnly.FromDateTime(SelectedDate.Value),
+                    Time = showTime,
+                    Theater = SelectedTheater.Name,
+                    Screen = SelectedScreen.Name
+                };
+
+                System.Diagnostics.Debug.WriteLine($"Created schedule object: ID={schedule.ScheduleId}");
+
+                // Save to repository
+                System.Diagnostics.Debug.WriteLine("About to call _scheduleRepository.AddSchedule()");
+                _scheduleRepository.AddSchedule(schedule);
+                System.Diagnostics.Debug.WriteLine("AddSchedule() completed successfully");
+
+                // Clear selections
+                ClearSelections();
+                System.Diagnostics.Debug.WriteLine("=== ScheduleShowAsync END ===");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ERROR in ScheduleShowAsync: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
             }
         }
 

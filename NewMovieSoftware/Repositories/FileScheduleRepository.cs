@@ -17,8 +17,10 @@ namespace MovieOrganiser2000.Repositories
         private static readonly JsonSerializerSettings _jsonSettings = new JsonSerializerSettings
         {
             Formatting = Formatting.Indented,
-            Converters = { new DateOnlyJsonConverter() } // Din tidligere converter
+            Converters = { new DateOnlyJsonConverter(), new TimeOnlyJsonConverter() } // Din tidligere converter
         };
+
+
 
         public FileScheduleRepository(string filePath)
         {
@@ -28,6 +30,14 @@ namespace MovieOrganiser2000.Repositories
             _filePath = filePath;
             Directory.CreateDirectory(Path.GetDirectoryName(_filePath)!);
             Debug.WriteLine($"[Repo] showschedules.json path: {_filePath}");
+
+            // DEBUG: Print the exact file path
+            Debug.WriteLine($"[Repo] showschedules.json FULL path: {Path.GetFullPath(_filePath)}");
+            Debug.WriteLine($"[Repo] File exists: {File.Exists(_filePath)}");
+            if (File.Exists(_filePath))
+            {
+                Debug.WriteLine($"[Repo] File size: {new FileInfo(_filePath).Length} bytes");
+            }
         }
 
         public IEnumerable<Schedule> GetAll()
@@ -62,9 +72,29 @@ namespace MovieOrganiser2000.Repositories
 
         void IScheduleRepository.AddSchedule(Schedule schedule)
         {
+            /*
             var schedules = GetAll().ToList();
             schedules.Add(schedule);
             SaveAll(schedules);
+            */
+
+            //DEBUG
+            Debug.WriteLine($"[Repo] AddSchedule called with schedule ID: {schedule.ScheduleId}");
+            var schedules = GetAll().ToList();
+            Debug.WriteLine($"[Repo] Existing schedules count: {schedules.Count}");
+
+            schedules.Add(schedule);
+            Debug.WriteLine($"[Repo] After add, schedules count: {schedules.Count}");
+
+            SaveAll(schedules);
+            Debug.WriteLine($"[Repo] SaveAll completed");
+
+            // Verify file was written
+            if (File.Exists(_filePath))
+            {
+                var content = File.ReadAllText(_filePath);
+                Debug.WriteLine($"[Repo] File content after save: {content.Substring(0, Math.Min(200, content.Length))}...");
+            }
         }
 
         void IScheduleRepository.UpdateSchedule(Schedule schedule)
