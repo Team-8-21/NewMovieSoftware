@@ -8,6 +8,11 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="AddMoviePage">
 
+    <!-- converters, styles, mv. -->
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
+
     <Grid Background="White">
         <Grid.ColumnDefinitions/>
         <Grid.RowDefinitions>
@@ -15,7 +20,7 @@
             <RowDefinition Height="37*"/>
         </Grid.RowDefinitions>
 
-        <!-- Øverste grid / topbar -->
+        <!-- Topbar -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -43,7 +48,8 @@
                     Width="230"
                     Background="Black"
                     BorderBrush="{x:Null}"
-                    Foreground="White" Click="Button_Click_AddMoviePage"/>
+                    Foreground="White"
+                    Click="Button_Click_AddMoviePage"/>
 
             <Button Grid.Column="2"
                     Content="Planlæg visning"
@@ -90,36 +96,52 @@
                     Foreground="White"/>
         </Grid>
 
+        <!-- Toast / notifikation (vises når IsNotificationVisible = true) -->
+        <Border Grid.RowSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,16,0,0"
+                CornerRadius="8"
+                Padding="14,10"
+                Background="#1DB954"
+                Opacity="0.95"
+                Visibility="{Binding IsNotificationVisible, Converter={StaticResource BoolToVis}}">
+            <TextBlock Text="{Binding NotificationText}"
+                       Foreground="White"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+        </Border>
+
         <!-- Nederste grid (inputs) -->
         <!-- Vælg biograf -->
         <Label Content="Vælg biograf"
-       HorizontalAlignment="Left"
-       Margin="344,71,0,0"
-       Grid.Row="1"
-       VerticalAlignment="Top"
-       FontSize="36"/>
+               HorizontalAlignment="Left"
+               Margin="344,71,0,0"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               FontSize="36"/>
 
         <ComboBox ItemsSource="{Binding Theaters}"
-          SelectedItem="{Binding SelectedTheater, Mode=TwoWay}"
-          HorizontalAlignment="Left"
-          Margin="154,134,0,0"
-          Grid.Row="1"
-          VerticalAlignment="Top"
-          Width="590" Height="50"
-          FontSize="22"
-          TextSearch.TextPath="Name">
-
+                  SelectedItem="{Binding SelectedTheater, Mode=TwoWay}"
+                  HorizontalAlignment="Left"
+                  Margin="154,134,0,0"
+                  Grid.Row="1"
+                  VerticalAlignment="Top"
+                  Width="590" Height="50"
+                  FontSize="22"
+                  TextSearch.TextPath="Name">
             <!-- Viser: City 1 — Downtown -->
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
-                <Run Text="{Binding Name}"/>
-                <Run Text=" — "/>
-                <Run Text="{Binding Location}"/>
+                        <Run Text="{Binding Name}"/>
+                        <Run Text=" — "/>
+                        <Run Text="{Binding Location}"/>
                     </TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+
         <!-- Vælg dato -->
         <Label Content="Vælg dato"
                HorizontalAlignment="Left"
@@ -127,35 +149,40 @@
                Grid.Row="1"
                VerticalAlignment="Top"
                FontSize="36"/>
+
         <Calendar Name="MyCalendar"
                   HorizontalAlignment="Left"
                   SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
                   VerticalAlignment="Top"
                   Margin="1028,302,0,0"
                   Grid.Row="1" Height="168" Width="189"/>
+
+        <!-- Vælg tidspunkt -->
         <Label Content="Vælg tidspunkt"
-       HorizontalAlignment="Left"
-       Margin="1346,244,0,0"
-       Grid.Row="1"
-       VerticalAlignment="Top"
-       FontSize="36"/>
+               HorizontalAlignment="Left"
+               Margin="1346,244,0,0"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               FontSize="36"/>
 
         <ComboBox ItemsSource="{Binding AvailableTimes}"
-          SelectedItem="{Binding SelectedTime, Mode=TwoWay}"
-          IsEditable="True"                 
-            HorizontalAlignment="Left"
-          Margin="1310,308,0,0"
-          Grid.Row="1"
-          VerticalAlignment="Top"
-          Width="308" Height="50"
-          FontSize="22"/>
-            <!-- Total længde (read-only) -->
+                  SelectedItem="{Binding SelectedTime, Mode=TwoWay}"
+                  IsEditable="True"
+                  HorizontalAlignment="Left"
+                  Margin="1310,308,0,0"
+                  Grid.Row="1"
+                  VerticalAlignment="Top"
+                  Width="308" Height="50"
+                  FontSize="22"/>
+
+        <!-- Total længde (read-only) -->
         <Label Content="Total længde"
                HorizontalAlignment="Left"
                Margin="1225,71,0,0"
                Grid.Row="1"
                VerticalAlignment="Top"
                FontSize="36"/>
+
         <TextBox Text="{Binding MovieLength, Mode=OneWay}"
                  IsReadOnly="True"
                  HorizontalAlignment="Left"
@@ -176,6 +203,7 @@
                Grid.Row="1"
                VerticalAlignment="Top"
                FontSize="36"/>
+
         <ComboBox ItemsSource="{Binding AvailableScreens}"
                   SelectedItem="{Binding SelectedScreen, Mode=TwoWay}"
                   DisplayMemberPath="Name"
@@ -193,6 +221,7 @@
                Grid.Row="1"
                VerticalAlignment="Top"
                FontSize="36"/>
+
         <ComboBox ItemsSource="{Binding Movies}"
                   SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
                   DisplayMemberPath="Title"
@@ -212,7 +241,7 @@
                 VerticalAlignment="Top"
                 FontSize="36"
                 Width="592" Height="54"
-                Background="#FFEFE5DA" Click="Button_Click_1"/>
+                Background="#FFEFE5DA"/>
 
         <!-- Antal ledige pladser (read-only fra valgt sal) -->
         <Label Content="Antal ledige pladser"
@@ -221,6 +250,7 @@
                Grid.Row="1"
                VerticalAlignment="Top"
                FontSize="36"/>
+
         <TextBox Text="{Binding SelectedScreen.SeatingCapacity}"
                  IsReadOnly="True"
                  HorizontalAlignment="Left"
