@@ -1,4 +1,5 @@
 ﻿using MovieOrganiser2000.Models;
+using MovieOrganiser2000.Helpers;
 using MovieOrganiser2000.Repositories;
 using MovieOrganiser2000.ViewModels;
 using System;
@@ -96,6 +97,11 @@ namespace MovieOrganiser2000.Views
         }
 
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
         }

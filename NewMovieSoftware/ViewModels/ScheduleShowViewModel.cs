@@ -179,6 +179,7 @@ namespace MovieOrganiser2000.ViewModels
         }
         
 
+
         // --- COMMAND LOGIK ---
         private bool CanScheduleShow()
         {
@@ -299,6 +300,7 @@ namespace MovieOrganiser2000.ViewModels
         }
 
         
+
         private void AddShow()
         {
             /*

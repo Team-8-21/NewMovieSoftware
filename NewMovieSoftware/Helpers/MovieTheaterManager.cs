@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MovieOrganiser2000.Models;
 using MovieOrganiser2000.Repositories;
 
-namespace MovieOrganiser2000.Models
+namespace MovieOrganiser2000.Helpers
 {
     public class TheaterService : IMovieTheater
     {
@@ -62,7 +63,7 @@ namespace MovieOrganiser2000.Models
         public async Task<MovieTheater> GetMovieTheaterByNameAsync(string name)
         {
             await Task.Delay(50);
-            return _theaters.FirstOrDefault(t => t.Name.Equals(name, System.StringComparison.OrdinalIgnoreCase));
+            return _theaters.FirstOrDefault(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public async Task<List<MovieScreen>> GetScreensForTheaterAsync(int theaterId)
