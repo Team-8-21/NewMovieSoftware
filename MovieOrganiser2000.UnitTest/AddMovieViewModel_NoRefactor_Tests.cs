@@ -11,71 +11,85 @@ using System.Linq;
 using MovieSoftware.MVVM.Model.Classes;
 using System.Windows.Documents;
 
+
 namespace MovieOrganiser2000.UnitTest
 {
     [TestClass]
     public class AddMovieViewModel_NoRefactor_Tests
     {
         public TestContext TestContext { get; set; }
+        private string _tempFile;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            // Kører før hver test
+            // Opretter en midlertidig fil og skriver en tom JSON-liste ind
+            _tempFile = Path.GetTempFileName();
+            File.WriteAllText(_tempFile, "[]");
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            // Kører efter hver test
+            // Sletter temp-filen så vi ikke efterlader rod
+            try { if (File.Exists(_tempFile)) File.Delete(_tempFile); } catch { }
+        }
 
         [TestMethod]
-        //Naming convention: ClassName_MethodName_ExpectedBehavior
-
         public void Ctor_Initializes_Genres_And_Defaults()
-        // Tester at konstruktøren sætter Genres til alle enum-værdier
-        // og at alle properties starter med de rigtige default-værdier.
         {
-            var vm = new AddMovieViewModel();
+            var repo = new FileMovieRepository(_tempFile);
+            var vm = new AddMovieViewModel(repo);
 
-            TestContext.WriteLine($"Init values -> Title:'{vm.Title}', Director:'{vm.Director}', Genre:{vm.SelectedGenre}, Length:{vm.MovieLength}, Premiere:{vm.Premiere}");
-
-            // Genres indeholder alle enum-værdier
+            // Tjekker at alle enum-værdier fra Genre findes i VM
             var expected = ((Genre[])Enum.GetValues(typeof(Genre))).ToList();
             CollectionAssert.AreEquivalent(expected, vm.Genres.ToList());
 
-            // Default valg
+            // Tjekker at alle properties starter med korrekte default-værdier
             Assert.AreEqual(Genre.Ukendt, vm.SelectedGenre);
             Assert.AreEqual("", vm.Title);
             Assert.AreEqual(0, vm.MovieLength);
             Assert.AreEqual("", vm.Director);
             Assert.AreEqual(default(DateOnly), vm.Premiere);
-            
+
+            TestContext.WriteLine("Ctor_Initializes_Genres_And_Defaults OK");
         }
 
         [TestMethod]
         public void PropertyChanged_Invoked_For_All_Properties()
-        // Tester at PropertyChanged-eventet bliver rejst korrekt,
-        // når man ændrer Title, MovieLength, Director, Premiere og SelectedGenre.
         {
-            var vm = new AddMovieViewModel();
-            var changed = new List<string>();
-            vm.PropertyChanged += (_, e) => changed.Add(e.PropertyName);         
+            var repo = new FileMovieRepository(_tempFile);
+            var vm = new AddMovieViewModel(repo);
 
+            // Samler hvilke properties der ændres
+            var changed = new List<string>();
+            vm.PropertyChanged += (_, e) => changed.Add(e.PropertyName);
+
+            // Ændrer alle relevante properties
             vm.Title = "Alien";
             vm.MovieLength = 117;
             vm.Director = "Ridley Scott";
             vm.Premiere = new DateOnly(1979, 5, 25);
             vm.SelectedGenre = Genre.SciFi;
 
-            // Log alle ændringer
-            TestContext.WriteLine("Følgende properties fired PropertyChanged:");
-            foreach (var c in changed)
-                TestContext.WriteLine($" - {c}");
-
-
+            // Tjekker at alle de properties har fyret PropertyChanged event
             CollectionAssert.IsSubsetOf(
                 new[] { "Title", "MovieLength", "Director", "Premiere", "SelectedGenre" },
                 changed
             );
+
+            TestContext.WriteLine("PropertyChanged events fired for: " + string.Join(", ", changed));
         }
 
         [TestMethod]
         public void AddMovieCommand_Resets_Fields()
-        // Tester at AddMovieCommand kan køres, og at den efterfølgende
-        // nulstiller alle inputfelter til deres default-værdier.
         {
-            var vm = new AddMovieViewModel
+            var repo = new FileMovieRepository(_tempFile);
+            var vm = new AddMovieViewModel(repo)
             {
+                // Fylder VM med testdata
                 Title = "Blade Runner",
                 MovieLength = 114,
                 Director = "Ridley Scott",
@@ -83,28 +97,29 @@ namespace MovieOrganiser2000.UnitTest
                 Premiere = new DateOnly(1982, 6, 25)
             };
 
-            // RelayCommand har ingen CanExecute-predicate i din kode -> kan altid execute
+            // Sikrer at kommandoen kan køre
             Assert.IsTrue(vm.AddMovieCommand.CanExecute(null));
 
+            // Kører kommandoen (skal tilføje film og nulstille felterne)
             vm.AddMovieCommand.Execute(null);
 
-            // Log efter reset
-            TestContext.WriteLine($"Efter AddMovieCommand.Execute:");
-            TestContext.WriteLine($" Title = '{vm.Title}'");
-            TestContext.WriteLine($" MovieLength = {vm.MovieLength}");
-            TestContext.WriteLine($" Director = '{vm.Director}'");
-            TestContext.WriteLine($" SelectedGenre = {vm.SelectedGenre}");
-            TestContext.WriteLine($" Premiere = {vm.Premiere}");
-
+            // Tjekker at felterne blev nulstillet
             Assert.AreEqual("", vm.Title);
             Assert.AreEqual(0, vm.MovieLength);
             Assert.AreEqual("", vm.Director);
             Assert.AreEqual(Genre.Ukendt, vm.SelectedGenre);
             Assert.AreEqual(default(DateOnly), vm.Premiere);
+
+            // Læser fra repo igen for at sikre at filmen faktisk blev gemt i JSON
+            var after = new FileMovieRepository(_tempFile).GetAll().ToList();
+            Assert.AreEqual(1, after.Count);
+            Assert.AreEqual("Blade Runner", after[0].Title);
+
+            TestContext.WriteLine("Efter AddMovieCommand: Gemte film = " + after[0].Title);
         }
     }
 
-        [TestClass]
+    [TestClass]
         public class FileUserRepository_Tests
         {
             public TestContext TestContext { get; set; }
@@ -132,9 +147,7 @@ namespace MovieOrganiser2000.UnitTest
                     }
                 }
                 catch
-                {
-                    // Best effort
-                }
+                { }
             }
 
             [TestMethod]
@@ -172,7 +185,9 @@ namespace MovieOrganiser2000.UnitTest
                         TestContext.WriteLine(" - " + users[i].UserName + ", " + users[i].Password);
                 }
 
-                Assert.IsTrue(foundSeed, "Ctor skulle seed’e standardbrugeren når filen ikke findes.");
+            TestContext.WriteLine("Brugere efter ctor: " + string.Join(", ", users.Select(u => u?.UserName)));
+
+            Assert.IsTrue(foundSeed, "Ctor skulle seed’e standardbrugeren når filen ikke findes.");
             }
 
             [TestMethod]
@@ -316,5 +331,61 @@ namespace MovieOrganiser2000.UnitTest
                 Assert.IsFalse(missing, "Manglende bruger burde give false.");
             }
         }
+    [TestClass]
+    public class Booking_Tests
+    {
+        public TestContext TestContext { get; set; }
+
+        [TestMethod]
+        public void Constructor_Sets_Amount_And_Customer()
+        {
+            // Arrange: lav en kunde som matcher Customer-ctor
+            var customer = new Customer("Alice", "Andersen", "alice@example.com", 12345678);
+
+            // Act
+            var booking = new Booking(3, customer);
+
+            // Assert: kræver at Booking-ctor sætter Amount = amount
+            Assert.AreEqual(3, booking.Amount, "Konstruktøren burde sætte Amount fra parameteren.");
+            Assert.AreSame(customer, booking.Customer, "Konstruktøren burde sætte Customer-referencen korrekt.");
+          
+            TestContext.WriteLine($"Booking: Amount={booking.Amount}, Customer={booking.Customer.FirstName}");
+
+        }
+
+        [TestMethod]
+        public void Properties_Can_Be_Changed_After_Creation()
+        {
+            var customer = new Customer("Bob", "Bentsen", "bob@example.com", 87654321);
+            var booking = new Booking(1, customer);
+
+            // Act: ændr properties efter oprettelse
+            booking.Amount = 5;
+            booking.Customer = new Customer("Carla", "Christensen", "carla@example.com", 11112222);
+
+            // Assert
+            Assert.AreEqual(5, booking.Amount, "Amount skal kunne opdateres.");
+            Assert.AreEqual("Carla", booking.Customer.FirstName, "Customer skal kunne udskiftes.");
+           
+            TestContext.WriteLine($"Changed booking: Amount={booking.Amount}, NewCustomer={booking.Customer.FirstName}");
+
+        }
+
+        [TestMethod]
+        public void Customer_Ctor_Sets_Defaults_When_Nulls_Are_Passed()
+        {
+            // Arrange/Act: Customer håndterer nulls med "Ukendt"
+            var c = new Customer(null, null, null, 0);
+
+            // Assert
+            Assert.AreEqual("Ukendt", c.FirstName);
+            Assert.AreEqual("Ukendt", c.LastName);
+            Assert.AreEqual("Ukendt", c.Email);
+            Assert.AreEqual(0, c.PhoneNumber);
+
+            TestContext.WriteLine("Customer med nulls -> defaults sat til 'Ukendt'");
+
+        }
     }
+}
 
