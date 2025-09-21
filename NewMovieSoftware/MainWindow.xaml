@@ -12,9 +12,10 @@
     <Grid>
     
 <Frame x:Name="MainFrame"
-    Grid.Row="5"
+    Grid.Row="1"
+    Grid.Column="1"
     NavigationUIVisibility="Hidden"
-    Margin="20"
+    Margin="10"
     Height="Auto" />
 
 
